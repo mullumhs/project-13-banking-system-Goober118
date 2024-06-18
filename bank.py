@@ -55,7 +55,17 @@ class BankManager:
             print("Account does not exist.")
             return False
             
-    def transfer(self, account_number):
-        account = self.account_exists(account_number)
-        if account is not False:
-            account.withdraw(withdraw_amount)            
+    def transfer(self, source_account_number, destination_account_number, transfer_amount):
+        acc1 = self.account_exists(source_account_number)
+        acc2 = self.account_exists(destination_account_number)
+        if acc1 is not None and acc2 is not None:
+            try:
+                acc1.withdraw(source_account_number, transfer_amount)
+                acc2.deposit(destination_account_number, transfer_amount)
+                return True      
+            except ValueError as e:
+                print(e)
+                return False
+            
+BankManager = []
+               
