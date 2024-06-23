@@ -14,8 +14,16 @@ class BankManager:
             if account.get_account_number() == account_number:
                 return account
             return False
-        
-    def add_acount(self, account_holder, account_number, balance):
+    
+    def display_account(self, account_number, account_holder, balance):
+        account = self.account_exists(account_number)
+        if account is not False:
+            print(f"Account holder: {account_holder}\nAccount number: {account_number}\nAccount balance: ${balance}")
+        else:
+            print("Account does not exist.")
+            return False
+            
+    def add_account(self, account_holder, account_number, balance):
         account = self.account_exists(account_number)
         if account is not False:
             print("Account already exists.")
@@ -66,6 +74,3 @@ class BankManager:
             except ValueError as e:
                 print(e)
                 return False
-            
-BankManager = []
-               
